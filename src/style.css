@@ -1,12 +1,18 @@
 body {
     text-align: center;
+    background-color: rgb(192, 201, 228);
+}
+
+.logotyp {
+    width: 400px;
+   
 }
 
 .contact-form {
     margin: 20px;
 }
 
-input[type="text"], input[type="email"] {
+input[type="text"]{
 
     padding: 5px;
     border: 1px solid #ccc;
@@ -15,8 +21,9 @@ input[type="text"], input[type="email"] {
 
 }
 
+
 button {
-    padding: 5px;
+    padding: 10px;
     background-color: #333;
     color: white;
     border: none;
@@ -32,6 +39,15 @@ li {
     margin: 10px 0;
 }
 
+#contact-list {
+    background-color: white;
+    padding: 10px 0 10px 0;
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid black;
+   border-radius: 30px;
+}
+
 .delete-button {
     padding: 2px 5px;
     margin-left: 5px;
@@ -39,6 +55,6 @@ li {
     color: white;
     border: 1px solid black;
     cursor: pointer;
-    margin-top: 4px;
+    margin-top: 10px;
 
 }

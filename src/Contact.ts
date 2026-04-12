@@ -1,14 +1,14 @@
 import { IContact } from './IContact';
 
 export class Contact implements IContact {
-    name: string;
-    phone: string;
-    email: string;
+    duty: string;
+    responsible: string;
+    priority: string;
 
-    constructor(name: string,  phone: string, email: string,) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
+    constructor(duty: string,  responsible: string, priority: string,) {
+        this.duty = duty;
+        this.responsible = responsible;
+        this.priority = priority;
         
     }
 

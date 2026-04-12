@@ -13,20 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function addContact(): void {
-    const nameInput = document.getElementById('name') as HTMLInputElement; //Det här är själva elementen
-    const phoneInput = document.getElementById('phone') as HTMLInputElement;
-    const emailInput = document.getElementById('email') as HTMLInputElement;
+    const dutyInput = document.getElementById('duty') as HTMLInputElement; //Det här är själva elementen
+    const priorityInput = document.getElementById('priority') as HTMLInputElement;
+    const responsibleInput = document.getElementById('responsible') as HTMLInputElement;
 
-    const name = nameInput.value;
-    const phone = phoneInput.value;
-    const email = emailInput.value;
+    const duty = dutyInput.value;
+    const priority = priorityInput.value;
+    const responsible = responsibleInput.value;
 
-    if (name && phone && email) {
-        const newContact = new Contact(name, phone, email)
+    if (duty && priority && responsible) {
+        const newContact = new Contact(duty, priority, responsible)
         contactManager.addContact(newContact); //Skickar in newContact till addContact metoden i ContactManager
-        nameInput.value = ''; //rensar input fälten
-        phoneInput.value = '';
-        emailInput.value = '';
+        dutyInput.value = ''; //rensar input fälten
+        priorityInput.value = '';
+        responsibleInput.value = '';
         renderContacts();
 
     }
@@ -44,17 +44,17 @@ function renderContacts(): void {
         contactList.innerHTML = ''; // Rensar listan
         contacts.forEach((contact) => {
             const li = document.createElement('li');
-            li.innerHTML = `<strong>${contact.name}</strong><br>
-            phone: ${contact.phone}<br>
-            email: ${contact.email}<br>`;
+            li.innerHTML = `<strong>${contact.duty}</strong><br>
+            priority: ${contact.priority}<br>
+            responsible: ${contact.responsible}<br>`;
 
             const deleteSpan = document.createElement('span');
             deleteSpan.textContent = 'Delete';
             deleteSpan.className = 'delete-button';
             
 
-            //Här tar vi bort med email istället. 
-            deleteSpan.addEventListener('click', () => deleteContact(contact.email));
+            //Här tar vi bort med duty istället. 
+            deleteSpan.addEventListener('click', () => deleteContact(contact.duty));
             li.appendChild(deleteSpan);
 
             contactList.appendChild(li);
@@ -63,9 +63,9 @@ function renderContacts(): void {
 }
 
 
-function deleteContact(email: string): void {
-   console.log("Tar bort kontakt med email:", email); // 🔍 Testlogg
-    contactManager.deleteContact(email);
+function deleteContact(duty: string): void {
+   alert("Bra jobbat!"); // 🔍 Testlogg
+    contactManager.deleteContact(duty);
     renderContacts();
 }
 

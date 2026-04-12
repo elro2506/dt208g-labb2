@@ -13,8 +13,8 @@ export class LocalStorageUtil {
             //============
             //Bättre att skriva
             const rawData = JSON.parse(contactsStr);
-            return rawData.map((c: { name: string; email: string; phone: string }) =>
-                new Contact(c.name, c.email, c.phone));
+            return rawData.map((c: { duty: string; responsible: string; priority: string }) =>
+                new Contact(c.duty, c.responsible, c.priority));
 
         } else {
             return []; // Om inga kontakter finns lagrade, returnera en tom array

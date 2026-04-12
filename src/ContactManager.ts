@@ -22,7 +22,7 @@ export class ContactManager {
     public deleteContact(index: number): void {
         this.contacts.splice(index, 1); 
         
-        //Vi tar bort en matchande email.
+        //Vi tar bort en matchande responsible.
         
 
         LocalStorageUtil.saveContacts(this.contacts);
@@ -30,11 +30,11 @@ export class ContactManager {
     }
         */
 
-    public deleteContact(email: string): void {
+    public deleteContact(duty: string): void {
        
         
-        //Vi tar bort en matchande email.
-        this.contacts = this.contacts.filter(c => c.email !== email)
+        //Vi tar bort en matchande responsible.
+        this.contacts = this.contacts.filter(c => c.duty !== duty)
 
         LocalStorageUtil.saveContacts(this.contacts);
 

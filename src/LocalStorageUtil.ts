@@ -9,15 +9,18 @@ export class LocalStorageUtil {
         const TodoStr = localStorage.getItem('todos');
         if (TodoStr) {
             //return JSON.parse(TodoStr);//När denna returneras kan Typescript inte veta
-                                           //vad som kommer ut ur localStorage. 
+            //vad som kommer ut ur localStorage. 
             //============
             //Bättre att skriva
             const rawData = JSON.parse(TodoStr);
-            return rawData.map((c: { duty: string; responsible: string; priority: number }) =>
-                new TodoList(c.duty, c.responsible, Number(c.priority)));
+            return rawData.map((c: { duty: string; responsible: string; priority: number; completed: boolean }) => {
+                const todo = new TodoList(c.duty, c.responsible, Number(c.priority));
+            todo.completed = c.completed;
+            return todo;
+            });
 
         } else {
-            return []; // Om inga todo finns lagrade, returnera en tom array
+            return [];
         }
+     }
     }
-}

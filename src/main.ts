@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault(); // Förhindrar att formuläret skickas traditionellt
         addTodo();
     });
+    const clearButton = document.getElementById('clear') as HTMLButtonElement;
+    clearButton.addEventListener('click', () => {
+        todoManager.clearCompleted();
+        renderTodo();
+        })
     renderTodo();
 });
 
@@ -36,36 +41,49 @@ function addTodo(): void {
 }
 
 function renderTodo(): void {
-    console.log(todoManager); // Ska visa TodoManager-instansen
-    const todos = todoManager.getTodos(); //Hämtar arrayen med kontakter från TodoManager
-    const taskList = document.getElementById('todo-list') as HTMLUListElement;//Hämtar listan från html
 
-    if (taskList) {
+    const todos = todoManager.getTodos(); //Hämtar arrayen med kontakter från TodoManager
+
+    const taskList = document.getElementById('todo-list') as HTMLUListElement;//Hämtar listan från html
+    const completedList = document.getElementById('completed-list') as HTMLUListElement; //En till lista för avklarade uppgifter
+
+    if (taskList && completedList) {
         taskList.innerHTML = ''; // Rensar listan
-        todos.forEach((todo) => {
+        completedList.innerHTML = '';
+        
+        todos.forEach((todo, index) => {
             const li = document.createElement('li');
+
             li.innerHTML = `<strong>${todo.duty}</strong><br>
             Ansvarig: ${todo.responsible}<br>
             Prioritet: ${todo.priority}<br>
             `;
 
-            const deleteSpan = document.createElement('span');
-            deleteSpan.textContent = 'Avklarad';
-            deleteSpan.className = 'delete-button';
+            if (todo.completed) {
+                li.classList.add("completed");
+            }
+            const button = document.createElement('button');
+            button.textContent = 'Avklarad';
+            
 
 
             //Här tar vi bort med duty istället. 
-            deleteSpan.addEventListener('click', () => deleteTodo(todo.duty));
-            li.appendChild(deleteSpan);
+            button.addEventListener('click', () => {
+                todoManager.markTodoCompleted(index);
 
-            taskList.appendChild(li);
+
+            renderTodo();
         });
-    }
+
+        li.appendChild(button);
+        
+        if (todo.completed) {
+            completedList.appendChild(li);
+        } else {
+            taskList.appendChild(li);
+        }
+    });
+}
 }
 
-
-function deleteTodo(duty: string): void {
-    todoManager.deleteTodo(duty);
-    renderTodo();
-}
 

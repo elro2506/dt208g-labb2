@@ -12,7 +12,7 @@ export class TodoManager {
     }
 
 
-    
+
     public addTodo(todo: TodoList): void {
         this.todos.push(todo);
         LocalStorageUtil.saveTodos(this.todos);
@@ -30,12 +30,12 @@ export class TodoManager {
     }
         */
 
-    public deleteTodo(duty: string): void {
-       
-        
-        //Vi tar bort en matchande responsible.
-        this.todos = this.todos.filter(c => c.duty !== duty)
+    public markTodoCompleted(index: number): void {
 
+
+
+        //Vi tar bort en matchande responsible.
+        this.todos[index].completed = true;
         LocalStorageUtil.saveTodos(this.todos);
 
     }
@@ -43,6 +43,10 @@ export class TodoManager {
         return this.todos;
     }
 
+    public clearCompleted(): void {
+        this.todos = this.todos.filter(todo => !todo.completed);
+        LocalStorageUtil.saveTodos(this.todos);
+    }
 
 
 

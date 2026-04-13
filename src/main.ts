@@ -1,72 +1,71 @@
-import { Contact } from "./Contact";
-import { ContactManager } from "./ContactManager";  //importerar ContactManager klassen
+import { TodoList } from "./TodoList";
+import { TodoManager } from "./TodoManager";  //importerar TodoManager klassen
 
-const contactManager = new ContactManager(); //Skapar en instans av ContactManager
+const todoManager = new TodoManager(); //Skapar en instans av TodoManager
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('form')! as HTMLFormElement;
     form.addEventListener('submit', (event) => {
         event.preventDefault(); // Förhindrar att formuläret skickas traditionellt
-        addContact();
+        addTodo();
     });
+    renderTodo();
 });
 
 
-function addContact(): void {
+function addTodo(): void {
     const dutyInput = document.getElementById('duty') as HTMLInputElement; //Det här är själva elementen
     const priorityInput = document.getElementById('priority') as HTMLInputElement;
     const responsibleInput = document.getElementById('responsible') as HTMLInputElement;
 
     const duty = dutyInput.value;
-    const priority = priorityInput.value;
+    const priority = Number(priorityInput.value);
     const responsible = responsibleInput.value;
-
-    if (duty && priority && responsible) {
-        const newContact = new Contact(duty, priority, responsible)
-        contactManager.addContact(newContact); //Skickar in newContact till addContact metoden i ContactManager
+    console.log(duty, responsible, priority);
+    if (duty && responsible && (priority === 1 || priority === 2 || priority === 3)) {
+        const newTodo = new TodoList(duty, responsible, priority)
+        todoManager.addTodo(newTodo); //Skickar in newTodo till addTodo metoden i TodoManager
         dutyInput.value = ''; //rensar input fälten
         priorityInput.value = '';
         responsibleInput.value = '';
-        renderContacts();
+        renderTodo();
 
     }
 
 
 }
 
-function renderContacts(): void {
-    console.log(contactManager); // Ska visa ContactManager-instansen
-    const contacts = contactManager.getContacts(); //Hämtar arrayen med kontakter från ContactManager
-    console.log("Dett är så här många kontakter i " + contacts.length);
-    const contactList = document.getElementById('contact-list') as HTMLUListElement;//Hämtar listan från html
+function renderTodo(): void {
+    console.log(todoManager); // Ska visa TodoManager-instansen
+    const todos = todoManager.getTodos(); //Hämtar arrayen med kontakter från TodoManager
+    const taskList = document.getElementById('todo-list') as HTMLUListElement;//Hämtar listan från html
 
-    if (contactList) {
-        contactList.innerHTML = ''; // Rensar listan
-        contacts.forEach((contact) => {
+    if (taskList) {
+        taskList.innerHTML = ''; // Rensar listan
+        todos.forEach((todo) => {
             const li = document.createElement('li');
-            li.innerHTML = `<strong>${contact.duty}</strong><br>
-            priority: ${contact.priority}<br>
-            responsible: ${contact.responsible}<br>`;
+            li.innerHTML = `<strong>${todo.duty}</strong><br>
+            Ansvarig: ${todo.responsible}<br>
+            Prioritet: ${todo.priority}<br>
+            `;
 
             const deleteSpan = document.createElement('span');
-            deleteSpan.textContent = 'Delete';
+            deleteSpan.textContent = 'Avklarad';
             deleteSpan.className = 'delete-button';
-            
+
 
             //Här tar vi bort med duty istället. 
-            deleteSpan.addEventListener('click', () => deleteContact(contact.duty));
+            deleteSpan.addEventListener('click', () => deleteTodo(todo.duty));
             li.appendChild(deleteSpan);
 
-            contactList.appendChild(li);
+            taskList.appendChild(li);
         });
     }
 }
 
 
-function deleteContact(duty: string): void {
-   alert("Bra jobbat!"); // 🔍 Testlogg
-    contactManager.deleteContact(duty);
-    renderContacts();
+function deleteTodo(duty: string): void {
+    todoManager.deleteTodo(duty);
+    renderTodo();
 }
 
-renderContacts();

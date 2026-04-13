@@ -1,18 +1,32 @@
 body {
     text-align: center;
     background-color: rgb(192, 201, 228);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .logotyp {
     width: 400px;
-   
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .contact-form {
     margin: 20px;
 }
 
-input[type="text"]{
+label {
+    align-self: flex-start;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+input[type="text"] {
 
     padding: 5px;
     border: 1px solid #ccc;
@@ -28,32 +42,46 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    margin-top: 10px;
+    width: 200px;
 }
 
 ul {
     list-style-type: none;
-    padding: 0;
-}
 
-li {
-    margin: 10px 0;
-}
-
-#contact-list {
     background-color: white;
     padding: 10px 0 10px 0;
     max-width: 700px;
     margin: 0 auto;
     border: 1px solid black;
-   border-radius: 30px;
+    border-radius: 10px;
 }
 
+ul:empty::before {
+    display: block;
+    content: "Inga uppgifter än!";
+}
+
+li {
+    margin: 10px;
+    padding: 15px;
+    border-bottom: 1px solid black;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+
+
 .delete-button {
-    padding: 2px 5px;
+    display: inline-block;
+    padding: 8px;
     margin-left: 5px;
-    background-color: red;
-    color: white;
+    background-color: rgb(135, 255, 171);
+    color: rgb(0, 0, 0);
     border: 1px solid black;
+    border-radius: 10px;
     cursor: pointer;
     margin-top: 10px;
 

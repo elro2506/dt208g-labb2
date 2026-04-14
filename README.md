@@ -1,41 +1,49 @@
-# Kontaktbok – TypeScript/OOP-exempel
+# ToDo – TypeScript/OOP-exempel
 
-Detta projekt visar hur man kan arbeta med klasser, objekt, metoder och `localStorage` i TypeScript.  
-Byggt med [Vite](https://vitejs.dev) som utvecklingsmiljö.
+Detta är en ToDo-applikation byggd i TypeScript med fokus på objektorienterad programmering (OOP) och användning av localStorage.
+I applikationen kan användaren lägga till uppgifter att göra, markera dem som avklarade och ha denna data sparad även vid siduppdatering.
+
+Jag har använt mig av Vite.
 
 ## Funktioner
 
-- Lägg till kontakter (namn, e-post, telefonnummer)
-- Lista kontakter i webbläsaren
-- Ta bort kontakter
+- Lägg till ToDos (uppgifter att göra)
+- Ange prioritet (1-3)
+- Lista dessa i webbläsaren
+- Markera ToDos som avklarade
+- Visa uppgifter i två spalter: `Att göra` och `Avklarade`
+- Möjlighet att rensa alla avklarade uppgifter
 - Data sparas automatiskt i `localStorage`
 
----
+### Tekniker
+- TypeScript
+- OOP (klasser, interface)
+- DOM
+- LocalStorage
+- HTML och CSS
+- Vite
 
-## Kom igång
+### Struktur
+Min applikation har jag delat upp i flera delar:
+- ToDo (interface)
+Detta beskriver hur en ToDo ska se ut
 
-### 1. Klona repot
+- TodoList (klass)
+Detta skapar enskilda uppgifter att göra, tex "handla mat"
+
+- TodoManager (klass) 
+Detta hanterar logiken, så som att lägga till, markera som avklarad och rensa
+
+- LocalStorageUtil
+För att spara och hämta data från LocalStorage
+
+- Main
+Hanterar det som användaren ser och gör i min applikation
+
+### Klona repot
 
 ```bash
-git clone https://github.com/larslu/contactViteApp.git
+git clone https://github.com/elro2506/dt208g-labb2.git
 cd contactViteApp
 ```
-
-### 2. Installera beroenden
-```bash
-npm install
-```
-
-### 3. Starta utvecklingsservern.
-```bash
-npm run dev
-```
-Öppna sedan den URL som visas i terminalen
-
-===========
-### För studenter
-
-Detta projekt används som exempel i föreläsningen om objektorienterad programmering i TypeScript.
-Koden är fri att kopiera och experimentera med.
-Lycka till!
-
+Länk till min webbplats: https://elro2506.github.io/dt208g-labb2/

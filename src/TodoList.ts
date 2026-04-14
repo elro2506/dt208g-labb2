@@ -6,11 +6,11 @@ export class TodoList implements Todo {
     priority: number;
     completed: boolean;
 
-    constructor(duty: string,  responsible: string, priority: number) {
+    constructor(duty: string, responsible: string, priority: number) {
         this.duty = duty;
         this.responsible = responsible;
         this.priority = priority;
-        this.completed = false;        
+        this.completed = false;
     }
 
 

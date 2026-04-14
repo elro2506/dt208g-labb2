@@ -3,48 +3,43 @@ import { LocalStorageUtil } from "./LocalStorageUtil";
 
 
 export class TodoManager {
-    private todos: TodoList[] = [];  //Array som håller alla kontakter
+    private todos: TodoList[] = [];  //Array som lagrar alla ToDos
 
 
-    //Kontruktor skapar objekt av klassen TodoManager och fyller arrayen med kontakter från LocalStorage
+    //Kontruktor skapar objekt av klassen TodoManager och fyller arrayen med ToDos från LocalStorage
     constructor() {
-        this.todos = LocalStorageUtil.loadTodos();
+        this.todos = LocalStorageUtil.loadTodos(); //Hämtar de sparade ToDos från LocalStorage
     }
 
 
 
-    public addTodo(todo: TodoList): void {
-        this.todos.push(todo);
-        LocalStorageUtil.saveTodos(this.todos);
+    public addTodo(duty: string, responsible: string, priority: number): boolean {
+        if (!duty || !responsible || ![1, 2, 3].includes(priority)) { //Detta validerar inputs, dvs alla fält ska vara ifyllda och prioritet=1-3
+            return false;
+        }
+
+        const newTodo = new TodoList(duty, responsible, priority); //Skapar ett nytt ToDo-objekt
+        this.todos.push(newTodo); //Lägger till objektet i arrayen
+        LocalStorageUtil.saveTodos(this.todos); //Sparar objekten i LocalStorage
+        return true;
 
     }
-    /*
-    public deleteTodo(index: number): void {
-        this.todos.splice(index, 1); 
-        
-        //Vi tar bort en matchande responsible.
-        
-
-        LocalStorageUtil.saveTodos(this.todos);
-
-    }
-        */
 
     public markTodoCompleted(index: number): void {
 
 
 
         //Vi tar bort en matchande responsible.
-        this.todos[index].completed = true;
-        LocalStorageUtil.saveTodos(this.todos);
+        this.todos[index].completed = true; //Detta markerar en ToDo som avklarad
+        LocalStorageUtil.saveTodos(this.todos); //Sparar ändringen i LocalStorage
 
     }
-    public getTodos(): TodoList[] { //retunerar kontakterna till main.ts
+    public getTodos(): TodoList[] { //retunerar ToDos till main.ts
         return this.todos;
     }
 
     public clearCompleted(): void {
-        this.todos = this.todos.filter(todo => !todo.completed);
+        this.todos = this.todos.filter(todo => !todo.completed); //Tar bort de ToDos som är avklarade
         LocalStorageUtil.saveTodos(this.todos);
     }
 

@@ -105,20 +105,6 @@ li:last-child {
     display: none;
 }
 
-
-.delete-button {
-    display: inline-block;
-    padding: 8px;
-
-    background-color: rgb(135, 255, 171);
-    color: rgb(0, 0, 0);
-    border: 1px solid black;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-
-}
-
 @media screen and (max-width: 900px) {
     main {
         max-width: 100%;

@@ -8,19 +8,16 @@ export class LocalStorageUtil {
     static loadTodos(): TodoList[] {
         const TodoStr = localStorage.getItem('todos');
         if (TodoStr) {
-            //return JSON.parse(TodoStr);//När denna returneras kan Typescript inte veta
-            //vad som kommer ut ur localStorage. 
-            //============
-            //Bättre att skriva
-            const rawData = JSON.parse(TodoStr);
+
+            const rawData = JSON.parse(TodoStr); //Konverterar JSON till sträng
             return rawData.map((c: { duty: string; responsible: string; priority: number; completed: boolean }) => {
                 const todo = new TodoList(c.duty, c.responsible, Number(c.priority));
-            todo.completed = c.completed;
-            return todo;
+                todo.completed = c.completed; //Gör en manuell handpålläggning på att det är completed
+                return todo;
             });
 
         } else {
             return [];
         }
-     }
     }
+}

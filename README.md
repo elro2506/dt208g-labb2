@@ -46,4 +46,4 @@ Hanterar det som användaren ser och gör i min applikation
 git clone https://github.com/elro2506/dt208g-labb2.git
 cd contactViteApp
 ```
-Länk till min webbplats: https://elro2506.github.io/dt208g-labb2/
+Länk till min webbplats: https://dt208g-labb2.netlify.app/

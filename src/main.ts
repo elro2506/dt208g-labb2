@@ -1,4 +1,3 @@
-import { TodoList } from "./TodoList";
 import { TodoManager } from "./TodoManager";  //importerar TodoManager klassen
 
 const todoManager = new TodoManager(); //Skapar en instans av TodoManager

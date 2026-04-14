@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     text-align: center;
     background-color: rgb(192, 201, 228);
@@ -5,14 +9,19 @@ body {
 }
 
 .logotyp {
-    width: 400px;
+    max-width: 400px;
 
+}
+
+main {
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    width: 700px;
+
     justify-content: center;
     margin: 0 auto;
 }
@@ -32,7 +41,7 @@ input[type="text"] {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-right: 10px;
+
 
 }
 
@@ -47,20 +56,28 @@ button {
     width: 200px;
 }
 
+.uppgifter div {
+    text-align: center;
+}
+
 .uppgifter {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     justify-content: center;
+    width: 100%;
     max-width: 700px;
     margin: 0 auto;
-    
+
 }
 
 ul {
     list-style-type: none;
+    width: 100%;
     max-width: 500px;
- 
+    margin: 0 auto;
+    padding: 0;
+    /*Det var för mycket till höger men hjälpte att nolla padding*/
 }
 
 #completed-list:empty::before {
@@ -69,10 +86,10 @@ ul {
 }
 
 li {
-    margin: 10px;
-    padding: 15px;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
     border-bottom: 1px solid black;
-    
+    text-align: center;
 }
 
 li:last-child {
@@ -82,17 +99,17 @@ li:last-child {
 .completed {
     opacity: 0.6;
     transition: all 0.3s ease;
-  }
+}
 
-  .completed button {
+.completed button {
     display: none;
-  }
+}
 
 
 .delete-button {
     display: inline-block;
     padding: 8px;
-    margin-left: 5px;
+
     background-color: rgb(135, 255, 171);
     color: rgb(0, 0, 0);
     border: 1px solid black;
@@ -100,4 +117,15 @@ li:last-child {
     cursor: pointer;
     margin-top: 10px;
 
+}
+
+@media screen and (max-width: 900px) {
+    main {
+        max-width: 100%;
+        margin: 20px;
+    }
+
+    .uppgifter {
+        grid-template-columns: 1fr;
+    }
 }
